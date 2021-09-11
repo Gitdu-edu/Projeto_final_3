@@ -1,0 +1,24 @@
+{
+  "name": "projeto_final_3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gitdu-edu/Projeto_final_3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gitdu-edu/Projeto_final_3/issues"
+  },
+  "homepage": "https://github.com/Gitdu-edu/Projeto_final_3#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.5"
+  }
+}
