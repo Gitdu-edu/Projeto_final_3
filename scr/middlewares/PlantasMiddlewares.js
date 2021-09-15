@@ -1,6 +1,4 @@
-//const mongoose = require("mongoose");
-
-const { plugin } = require("mongoose");
+const mongoose = require("mongoose");
 const Planta = require("../models/Planta");
 
 const validaID = async (req, res, next) => {
@@ -11,17 +9,17 @@ const validaID = async (req, res, next) => {
     return;
   }
 
-  try { // TENTE
-    const Plantas = await Planta.findById(id); // promisse - pesq. ao banco de dados. ex: 2º plano
-    if(!Planta){
-        return res.status(404).send({msgMiddleware: "Planta não encontrado."})
+  try {
+    const planta = await Planta.findById(id);
+    if(!planta){
+        return res.status(404).send({msgMiddleware: "Planta não encontrada."})
     }
-    res.personagem = personagem
+    res.planta = planta
   } catch (err) {
     return res.status(500).send({error: err})
   }
 
-  next();
+  next(); // pedindo pra continuar. senão da ruim
 };
 
 module.exports = { validaID };
