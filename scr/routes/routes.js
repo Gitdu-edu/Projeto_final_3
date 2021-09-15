@@ -1,6 +1,6 @@
 const routes = require("express").Router();
 
-const PlantaController = require("../controllers/PersonagensController");
+const PlantaController = require("../controllers/PlantasController");
 const PlantaMiddleware = require("../middlewares/PlantaMiddlewares");
 
 routes.get("/plantas", PlantaController.getAll);
