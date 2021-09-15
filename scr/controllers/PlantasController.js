@@ -29,9 +29,9 @@ const getById = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  const { nome, identidade, genero, imagem } = req.body;
+  const { nome, solo, familia, imagem } = req.body;
 
-  if (!nome || !identidade || !genero || !imagem) {
+  if (!nome || !solo || !familia || !imagem) {
     res.status(400).send({
       message: "Você não enviou todos os dados necessários para o cadastro",
     });
@@ -40,8 +40,8 @@ const create = async (req, res) => {
 
   const novoPlanta = await new Planta({
     nome,
-    identidade,
-    genero,
+    solo,
+    familia,
     imagem,
   });
 
@@ -56,9 +56,9 @@ const create = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  const { nome, identidade, genero, imagem } = req.body;
+  const { nome, solo, familia, imagem } = req.body;
 
-  if (!nome || !identidade || !genero || !imagem) {
+  if (!nome || !solo || !familia || !imagem) {
     res.status(400).send({
       message: "Você não enviou todos os dados necessários para o cadastro",
     });
@@ -66,8 +66,8 @@ const update = async (req, res) => {
   }
 
   res.planta.nome = nome;
-  res.planta.identidade = identidade;
-  res.planta.genero = genero;
+  res.planta.solo = solo;
+  res.planta.familia = familia;
   res.planta.imagem = imagem;
 
   try {
@@ -102,17 +102,17 @@ const filterByName = async (req, res) => {
 };
 
 const filterAll = async (req, res) => {
-  let { nome, identidade, genero } = req.query;
+  let { nome, solo, familia } = req.query;
 
   !nome ? (nome = "") : (nome = nome);
-  !identidade ? (identidade = "") : (identidade = identidade);
-  !genero ? (genero = "") : (genero = genero);
+  !solo ? (solo = "") : (solo = solo);
+  !familia ? (familia = "") : (familia = familia);
 
   try {
     const plantas = await Planta.find({
       nome: { $regex: `${nome}`, $options: 'i' },
-      identidade: { $regex: `${identidade}`, $options: 'i'},
-      genero: { $regex: `${genero}`, $options: 'i'},
+      solo: { $regex: `${solo}`, $options: 'i'},
+      familia: { $regex: `${familia}`, $options: 'i'},
     });
 
     if (plantas.length === 0)
